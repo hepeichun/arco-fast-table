@@ -1,4 +1,4 @@
-# vite-vue-lib-template
+# arco-fast-table
 
 > Fully automated.
 
