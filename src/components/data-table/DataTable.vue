@@ -13,7 +13,7 @@
         @page-size-change="onPageSizeChange"
     >
         <template #columns>
-            <template v-for="(item, index) in columns" :key="index">
+            <template v-for="(item, index) in columns" :key="DataTable">
                 <template v-if="item.hasOwnProperty('dataIndex') && item.show">
                     <a-table-column
                         v-if="!!slots[`custom-${item.dataIndex}`]"
@@ -66,7 +66,7 @@
     </a-table>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts" setup name="DataTable">
 import dayjs from 'dayjs'
 import getOptionsText from '../../utils/tableTool'
 import {defineProps, defineEmits, onBeforeMount, reactive, PropType, useSlots, RenderFunction} from 'vue'
