@@ -69,13 +69,14 @@
 <script lang="ts" setup>
 import dayjs from 'dayjs'
 import getOptionsText from '../../utils/tableTool'
-import { defineProps, defineEmits, onBeforeMount, reactive, PropType, useSlots } from 'vue'
+import {defineProps, defineEmits, onBeforeMount, reactive, PropType, useSlots, RenderFunction} from 'vue'
 import PreviewImage from '../preview-image/index.vue'
+import {TableColumnData} from "@arco-design/web-vue/es/table/interface"
 
 const { VITE_API_BASE_URL } = import.meta.env
-import {TableColumnData, TableData} from "@arco-design/web-vue"
 
-interface MyTableColumnData extends TableColumnData{
+interface MyTableColumnData extends TableColumnData
+{
   title: string;
   dataIndex?: string;
   slotName?: string;
@@ -85,8 +86,13 @@ interface MyTableColumnData extends TableColumnData{
   type: string;
 }
 
-interface MyTableData extends TableData{
+interface MyTableData {
+  key?: string;
+  expand?: string | RenderFunction;
   children?: MyTableData[];
+  disabled?: boolean;
+  isLeaf?: boolean;
+  [name: string]: any;
 }
 
 const props = defineProps({
