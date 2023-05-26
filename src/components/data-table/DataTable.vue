@@ -120,7 +120,7 @@ const props = defineProps({
     },
     data: {
         type: Array as PropType<MyTableData[]>,
-        default: [],
+        default: [] as MyTableData[],
     },
 })
 
