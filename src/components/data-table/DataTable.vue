@@ -41,7 +41,7 @@
 import dayjs from 'dayjs'
 import getOptionsText from '../../utils/tableTool'
 import { defineProps, defineEmits, onBeforeMount, reactive, PropType, useSlots, RenderFunction } from 'vue'
-import PreviewImage from '../preview-image/index.vue'
+import PreviewImage from '../preview-image/PreviewImage.vue'
 import { TableColumnData } from '@arco-design/web-vue/es/table/interface'
 
 const { VITE_API_BASE_URL } = import.meta.env
