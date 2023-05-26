@@ -35,7 +35,8 @@
     "dependencies": {
         "@arco-design/web-vue": "^2.46.0",
         "dayjs": "^1.11.7",
-        "vue": "^3.2.45"
+        "vue": "^3.2.45",
+        "vuedraggable": "^4.1.0"
     },
     "devDependencies": {
         "@rushstack/eslint-patch": "^1.1.4",

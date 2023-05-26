@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import Button from './components/Button.vue'
 </script>
 
 <template>
-    <Button text="Hello World!" />
+    <div>Hello</div>
 </template>
 
 <style scoped></style>

@@ -1,50 +1,25 @@
 <template>
     <!--数据表格-->
-    <a-table
-        :loading="loading"
-        :pagination="pagination"
-        :data="data"
-        :bordered="bordered"
-        :size="size"
-        :page-position="pagePosition"
-        :scrollbar="scrollbar"
-        :scroll="scroll"
-        @page-change="onPageChange"
-        @page-size-change="onPageSizeChange"
-    >
+    <a-table :loading="loading" :pagination="pagination" :data="data" :bordered="bordered" :size="size" :page-position="pagePosition" :scrollbar="scrollbar" :scroll="scroll" @page-change="onPageChange" @page-size-change="onPageSizeChange">
         <template #columns>
-            <template v-for="(item, index) in columns" :key="DataTable">
+            <template v-for="(item, index) in columns" :key="index">
                 <template v-if="item.hasOwnProperty('dataIndex') && item.show">
-                    <a-table-column
-                        v-if="!!slots[`custom-${item.dataIndex}`]"
-                        :title="item.title"
-                        :data-index="item.dataIndex"
-                        :width="item.width">
+                    <a-table-column v-if="!!slots[`custom-${item.dataIndex}`]" :title="item.title" :data-index="item.dataIndex" :width="item.width">
                         <template #cell="{ record, column, rowIndex }">
                             <a-table-column>
-                                <slot
-                                    :name="`custom-${item.dataIndex}`"
-                                    :record="record"
-                                    :column="column"
-                                    :row-index="rowIndex"
-                                />
+                                <slot :name="`custom-${item.dataIndex}`" :record="record" :column="column" :row-index="rowIndex" />
                             </a-table-column>
                         </template>
                     </a-table-column>
-                    <a-table-column
-                        v-else-if="item.hasOwnProperty('options')"
-                        :title="item.title"
-                        :data-index="item.dataIndex"
-                        :width="item.width">
+                    <a-table-column v-else-if="item.hasOwnProperty('options')" :title="item.title" :data-index="item.dataIndex" :width="item.width">
                         <template #cell="{ record, column }">
-                          {{getOptionsText(item.options, record[column.dataIndex])}}
+                            {{ getOptionsText(item.options, record[column.dataIndex]) }}
                         </template>
                     </a-table-column>
                     <a-table-column v-else :title="item.title" :data-index="item.dataIndex" :width="item.width">
-                        <template v-if="item.type === 'date-time-picker'" #cell="{ record, column }">
-                          {{record[column.dataIndex] ? dayjs(record[column.dataIndex]).format('YYYY-MM-DD HH:mm:ss') : '-'}}</template>
+                        <template v-if="item.type === 'date-time-picker'" #cell="{ record, column }"> {{ record[column.dataIndex] ? dayjs(record[column.dataIndex]).format('YYYY-MM-DD HH:mm:ss') : '-' }}</template>
                         <template v-else-if="item.type === 'upload-image'" #cell="{ record, column }">
-                            <preview-image v-if="record[column.dataIndex]" :url="`${VITE_API_BASE_URL}${record[column.dataIndex]}`"/>
+                            <preview-image v-if="record[column.dataIndex]" :url="`${VITE_API_BASE_URL}${record[column.dataIndex]}`" />
                             <a-avatar v-else>无</a-avatar>
                         </template>
                         <template v-else #cell="{ record, column }">{{ record[column.dataIndex] ?? '-' }}</template>
@@ -53,11 +28,7 @@
                 <template v-else-if="item.hasOwnProperty('slotName') && item.show">
                     <a-table-column :title="item.title" :data-index="item.slotName">
                         <template #cell="{ record, column, rowIndex }">
-                            <slot
-                                :name="`slot-${item.slotName}`"
-                                :record="record"
-                                :column="column"
-                                :row-index="rowIndex"/>
+                            <slot :name="`slot-${item.slotName}`" :record="record" :column="column" :row-index="rowIndex" />
                         </template>
                     </a-table-column>
                 </template>
@@ -66,33 +37,33 @@
     </a-table>
 </template>
 
-<script lang="ts" setup name="DataTable">
+<script lang="ts" setup>
 import dayjs from 'dayjs'
 import getOptionsText from '../../utils/tableTool'
-import {defineProps, defineEmits, onBeforeMount, reactive, PropType, useSlots, RenderFunction} from 'vue'
+import { defineProps, defineEmits, onBeforeMount, reactive, PropType, useSlots, RenderFunction } from 'vue'
 import PreviewImage from '../preview-image/index.vue'
-import {TableColumnData} from "@arco-design/web-vue/es/table/interface"
+import { TableColumnData } from '@arco-design/web-vue/es/table/interface'
 
 const { VITE_API_BASE_URL } = import.meta.env
 
-interface MyTableColumnData extends TableColumnData
-{
-  title: string;
-  dataIndex?: string;
-  slotName?: string;
-  width?: number;
-  show: boolean;
-  options?: any;
-  type: string;
+interface MyTableColumnData extends TableColumnData {
+    title: string
+    dataIndex?: string
+    slotName?: string
+    width?: number
+    show: boolean
+    options?: any
+    type: string
 }
 
 interface MyTableData {
-  key?: string;
-  expand?: string | RenderFunction;
-  children?: MyTableData[];
-  disabled?: boolean;
-  isLeaf?: boolean;
-  [name: string]: any;
+    key?: string
+    expand?: string | RenderFunction
+    children?: MyTableData[]
+    disabled?: boolean
+    isLeaf?: boolean
+
+    [name: string]: any
 }
 
 const props = defineProps({
@@ -134,17 +105,17 @@ const props = defineProps({
         default: false,
     },
     pagePosition: {
-        type: [String] as PropType<"top" | "tl" | "tr" | "bottom" | "bl" | "br">,
+        type: [String] as PropType<'top' | 'tl' | 'tr' | 'bottom' | 'bl' | 'br'>,
         default: 'br',
     },
     size: {
-        type: String as PropType<"mini" | "medium" | "large" | "small">,
-        default: "large",
+        type: String as PropType<'mini' | 'medium' | 'large' | 'small'>,
+        default: 'large',
     },
     columns: {
         type: Array as PropType<MyTableColumnData[]>,
         default() {
-          return []
+            return []
         },
     },
     data: {
