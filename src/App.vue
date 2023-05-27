@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import Test from './example/test.vue'
 </script>
 
 <template>
-    <div>Hello</div>
+    <Test />
 </template>
 
 <style scoped></style>

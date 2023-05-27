@@ -1,25 +1,20 @@
 # arco-fast-table
 
-> Fully automated.
+> arco-fast-table 基于 `vue3`和`@arco-design/web-vue`
+>
+> 部分组件是有第三方库依赖,如果出现错误,请对应安装依赖
 
--   [x] Eslint
--   [x] Prettier
--   [x] Conventional Commit
--   [x] Pre-commit
--   [x] Lint-staged
--   [x] Semantic-release
--   [x] TypeScript
+## 依赖
 
-## How to use:
+- `vue`
+- `@arco-design/web-vue`
+- `dayjs`
+- `vuedraggable@next`
 
-1.  Clone the project
-2.  `yarn`
-3.  `npx semantic-release-cli setup`
-4.  Add components
-5.  `git add .`
-6.  `yarn commit`
-7.  `git push`
+## 模块
 
-## Real Example:
+- 快速表格
+- 快速表单
+- 快速筛选
+- 快速工具
 
-[vue-tradingviewWidgets](https://github.com/ehsan-shv/vue-tradingviewWidgets)

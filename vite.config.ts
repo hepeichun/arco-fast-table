@@ -16,10 +16,11 @@ export default defineConfig({
         }),
     ],
     build: {
+        manifest: true,
         lib: {
             entry: resolve(__dirname, 'src/components/index.ts'),
-            name: 'vite-vue-lib-template',
-            fileName: 'vite-vue-lib-template',
+            name: 'arco-fast-table',
+            fileName: 'arco-fast-table',
         },
         watch: {
             include: [resolve(__dirname, 'src')],
